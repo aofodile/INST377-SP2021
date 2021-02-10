@@ -1,7 +1,7 @@
 /* Add some css styles based on the tutorial at javascript.info: introduction to browser events
  https://javascript.info/introduction-browser-events */
 
- /**, html, body {
+ *, html, body {
   padding: 0;
   margin: 0;
   color: white;
@@ -9,13 +9,8 @@
   background-color: red;
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
-}*/
-
-
-label { 
-  text-align: center;
-  width: 70px;
 }
+
 
 #container {
   height: 100vh;
@@ -40,27 +35,18 @@ label {
   height: 100vh;
   width: 100vw;
   background: rgb(246,210,106);
-  /*background: linear-gradient(111deg, rgba(246,210,106,1) 0%, rgba(255,159,0,1) 52%, rgba(251,197,100,1) 100%);*/
+  background: linear-gradient(111deg, rgba(246,210,106,1) 0%, rgba(255,159,0,1) 52%, rgba(251,197,100,1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#outer3 {
-  width: 100px;
-  height: 40px;
-  background-color: white;
-  margin: 10px auto;
-  border-radius: 3px;
-  border: 2px solid white;
-  transition: all 0.5s;
-}
 
 #mainView {
   height: 450px;
   width: 450px;  
   border-radius: 5px;
-  /*background-color: #eb9100;*/
+  background-color: #eb9100;
   margin-left: 10px;
   margin-right: 10px;
   z-index: 1;
@@ -73,43 +59,7 @@ label {
   transition: all 1s;   
 }
 
-/*#leftView {
-  height: 400px;
-  width: 150px;
-  opacity: 0.5;
-  border-radius: 5px;
-  transform: skewy(5deg);
-  transform-origin: top right;
-  background-color: #eb9100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 1s;  
-}
 
-#leftView:hover {
-  opacity: 1;
-  transition: all 1s;
-}
-
-#rightView {
-  height: 400px;
-  width: 150px;
-  opacity: 0.5;
-  border-radius: 5px;
-  transform: skewy(-5deg);
-  transform-origin: top left;
-  background-color: #eb9100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- transition: all 1s;
-}*/
-
-/*#rightView:hover {
-  opacity: 1;
-  transition: all 1s;
-}*/
 
 /*.navBtns {
   width: 80px;
@@ -128,10 +78,6 @@ label {
   transition: all 1s;
   background-color: #eb9100;
 }
-
-/*#navLeft {
-  left: 50px;
-}*/
 
 #navRight {
   bottom: 50px;
