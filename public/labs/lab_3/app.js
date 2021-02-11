@@ -1,14 +1,30 @@
 /* Put your javascript in here */
 
-let imgs = ["onigiri_1.png","onigiri_2.png","onigiri_3.png","roll_1.png","roll_2.png","roll_3.png"];
+const gap = 16;
 
-document.addEventListener("DOMContentLoaded", function(event) {
-    console.log("DOM fully loaded and parsed");
-  });
+const carousel = document.getElementById("carousel"),
+content = document.getElementById("content"),
+next = document.getElementById("next"),
+prev = document.getElementById("prev");
 
-function test() {
-    alert('Click!');
-};
+next.addEventListener("click", e => {
+	carousel.scrollBy(width + gap, 0);
+  	if (carousel.scrollWidth !== 0) {
+  		prev.style.display = "flex";
+  	}
+  	if (content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+  		next.style.display = "none";
+  	}
+});
+prev.addEventListener("click", e => {
+	carousel.scrollBy(-(width + gap), 0);
+  	if (carousel.scrollLeft - width - gap <= 0) {
+  		prev.style.display = "none";
+  	}
+  	if (!content.scrollWidth - width - gap <= carousel.scrollLeft + width) {
+  		next.style.display = "flex";
+  	}
+});
 
-const main = document.getElementById("main");
-main.addEventListener("mouseover", test());
+let width = carousel.offsetWidth;
+window.addEventListener("resize", e => (width = carousel.offsetWidth));
