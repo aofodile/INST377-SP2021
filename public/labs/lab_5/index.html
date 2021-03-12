@@ -28,22 +28,11 @@
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
+
+
 <script>
-  const map = L.map('mapid') 
-  
-  // Get the tile layer from OpenStreetMaps 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
 
-  // Specify the maximum zoom of the map 
-  maxZoom: 19, 
 
-  // Set the attribution for OpenStreetMaps 
-  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' 
-  }).addTo(map);
-
-  map.setView([48.8584, 2.2945], 16); 
-</script>
-<script>
 const endpoint = 'https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json'
 
 const zips = [];
@@ -57,24 +46,66 @@ function findMatches(wordToMatch, zips) {
       const regex = new RegExp(wordToMatch, 'gi');
       return restr.zip.match(regex)
     });
+
 }
 
+const map = L.map('mapid') 
 
+// Get the tile layer from OpenStreetMaps 
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+
+// Specify the maximum zoom of the map 
+maxZoom: 9, 
+
+// Set the attribution for OpenStreetMaps 
+attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' 
+}).addTo(map);
+
+map.setView([38.82,-76.76], 16);
+for (var i=0; i<restr.geocoded_column_1.coordinates.length; i++) {           
+  var lon = markers[i][0];
+  var lat = markers[i][1];
+  // var popupText = markers[i][2];
+  
+  var markerLocation = new L.LatLng(lat, lon);
+  var marker = new L.Marker(markerLocation);
+  map.addLayer(marker);
+}
 function displayMatches() {
   // console.log(this.value)
-    const matchArray = findMatches(this.value, zips.slice(0, 5));
-    const html = matchArray.map(restr => {
-      return `<li><span class="name">${restr.name}</span><span class="result">${restr.address_line_1}</span></li>`;
-    }).join('')
-    suggestions.innerHTML = html;    
+  const matchArray = findMatches(this.value, zips.slice(0, 10));
+  const html = matchArray.map(restr => {
+    let eiffelMarker = L.marker([restr.geocoded_column_1.coordinates[0],restr.geocoded_column_1.coordinates[1]]).addTo(map);
+    return `<li><span class="name">${restr.name}</span><span class="result">${restr.address_line_1}</span></li>`;
+  }).join('')
+  suggestions.innerHTML = html;
+
 }
 
 
+
+
+// const matchArray1 = findMatches(this.value, zips.slice(0, 10));
+// const html1 = matchArray1.map(restr1 => {
+//   return 
+// })
+// var markerLocation = new L.LatLng(restr.geocoded_column_1.coordinates[0], restr.geocoded_column_1.coordinates[1]);
+// var marker = new L.Marker(markerLocation);
+// // var markers = zips.slice()
+// map.addLayer(marker)
 const searchInput = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions');
+// const mapInput = document.querySelector('#mapid');
 
 searchInput.addEventListener('change', displayMatches);
 searchInput.addEventListener('keyup', displayMatches);
+// mapInput.addEventListener('changes', mapInit);
 </script>
+
+<!-- <script>
+
+
+</script> -->
+
 </body>
 </html>
