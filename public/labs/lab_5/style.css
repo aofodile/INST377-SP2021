@@ -4,7 +4,7 @@ html {
   font-family: 'helvetica neue';
   font-size: 20px;
   font-weight: 200;
-  max-width: 960px;
+  /*max-width: 960px;*/
 }
 
 /**, *:before, *:after {
@@ -17,14 +17,15 @@ input {
 }
 
 #mapid {
-  height: 180px; 
+  height: 180px;
+  /*align: right;*/
 }
 .main {
   justify-content: center;
 }
 .search-form {
   max-width: 400px;
-  margin: 50px auto;
+  /*margin: 50px auto;*/
 }
 
 input.search {
